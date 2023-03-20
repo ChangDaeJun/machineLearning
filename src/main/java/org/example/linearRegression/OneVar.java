@@ -1,4 +1,4 @@
-package org.example;
+package org.example.linearRegression;
 
 import java.util.function.Function;
 

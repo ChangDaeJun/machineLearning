@@ -1,4 +1,4 @@
-package org.example;
+package org.example.linearRegression;
 
 import org.jblas.DoubleMatrix;
 
@@ -39,6 +39,12 @@ public class LinearRegression {
                 System.out.println("index : "+ i + ", lossVar = " + loss_val().apply(matrixX, matrixY) + ", Initial W = " + W + ", b = " + b);
             }
         }
+
+        //44에 대한 예상 값을 구하는 과정. 결과 : 45
+        double[] z_data = {44};
+        DoubleMatrix matrix_z = new DoubleMatrix(z_data).reshape(1, 1);
+        DoubleMatrix result = predict().apply(matrix_z);
+        System.out.println(Arrays.toString(result.toArray()));
     }
 
 
@@ -62,9 +68,9 @@ public class LinearRegression {
         };
     }
 
-    //미래에 예상되는 오챠율을 계산한다.
-    public static BiFunction<DoubleMatrix, DoubleMatrix, DoubleMatrix> predict(){
-        return (x, y) -> {
+    //미래에 예상되는 결과 출력
+    public static Function<DoubleMatrix, DoubleMatrix> predict(){
+        return x -> {
             DoubleMatrix z = x.mul(W).add(b);
             return z;
         };
